@@ -1,0 +1,176 @@
+Okay, so we'll have a look first look at an example of doing machine learning. 
+But before that, let's just have a quick overview of the process of the that we tend to go through for doing machine learning very touched on the a lot of parts of it, 
+actually. But it's interesting. It's worth just seeing overview 
+one is we have to collect data and not just collect data. 
+We have to clean up usually. And you know the relatives often as the bulk of the effort, you know, 80%, 90% of the actual errors and spent is spent collecting data cleaning up and putting in
+you know, even just gathering from different databases in getting an efficient way that your system can read is very often a big deal. 
+
+But it's we are gonna talk about that here in this course. 
+History, it's a fairly straightforward but painful programming. 
+The another you know, keep were not going to talk too much about businesses.  But of course, the reason we're building a machine learning system making predictions cause there are some business in for it. 
+And so that's what really matters. Does it work? Are we able to successfully? just pick out the display that make money? 
+It's worth keeping your eye is important to keep an eye on that final angle. 
+Because that's what really matters. 
+
+But again, it's kind of outside the scope for the model here, because we were not going to talk too much business, but it's important not to forget that last year. 
+This middle bit is what we mainly going to focus on here. 
+So we have to map with to get our inputs. We've got a raw inputs with to choose features. How do we map from the things we can measure? 
+To this feature vector of numerical values that are going to use for making predictions? 
+Choosing features is a big deal feature engineering is probably the hardest part of the four boxes here in the middle. 
+They then once we've chosen the features, you need to select a model. So the front the way that we map from the features to our prediction with lots of ways we can do that. 
+And we spend a good well looking at common where ways of about that mapping that monkey's got a model on which we can select from the different choices. 
+And and compare them and trying to say which is the best one. 
+So we will look at different models. 
+And then we have to train the models. And given our typically, these models are structures, you know, they are good. 
+Prompt as there are none. So given a training details, training data, we try and adapt that a genetic model to fit their data and make predictions are tailored. 
+
+To the training data that we have to train it. 
+And then we have to test it didn't work is in good health actually managed to capture something interesting in the data that doesn't work. We have to go back repeat until we find something. 
+If it's working or give up, 
+okay, that's that's the big picture. So we can take one a quick cycle. 
+Through this just give you an idea. 
+I've just anything concretely remember going to drill down over the coming lectures into each of those four boxes. 
+So for example,  look at is moving sentiment analysis. So if you have a look at this URL here, there is a bunch of details with the same DB movie reviews. So it's a text from your movie reviews. 
+And there is an example and that's been manually labelled as whether the review was positive or negative. 
+So whether you like the movie or didn't like it, 
+it's our task is given the text of review, is it supposed to relate to that sentiment analysis that's called? 
+It's we have training data. So the previously people of a collectors refuse to label them. 
+And so how do we start? How do with that? We know we want to do we have a training day to thank for someone else to work. 
+How do we proceed? 
+
+Okay, so the basic idea is is very simple. So we know that somewhere to positive sum where the negative wonderful, great, amazing,  the post words terrible, awful dreadful or and negative words. 
+So if we can figure out which words are positive, which was negative,  then we could just count the number of possible interview, a number of negative words. 
+And invoked, if there are more positive words, the next one was positive review is more negative than positive will see the negative here. 
+Thus, the idea that actually the idea that used widely used in sentiment mouse's
+so the two of them, this example isn't so far from what people really do. 
+And it's really a simple as as so the the the Challenge is the ultimate idea. 
+
+So what we do have to learn
+what was positive, negative words are, and some positive words will somehow be more important than other possible. We also want to learn waiting for them and some
+you know seeing something was wonderful somehow counts for more than the singing it was okay. 
+51 to try and learn that weight as well. 
+Okay, the first thing is we have to map from text to a numerical factor. 
+And there's lots of ways to do that. 
+But one of the most popular ways and the way that you know if you're given some text, 
+and you have to try and work that probably the first thing you should try is this, which is called a bag of words model. 
+It's a simple model. 
+
+I bought it works amazingly time and time again, it seems to work pretty well. 
+So the first thing we do is we take your text, I mean, the the boarding words are and of the is really frequently not informative they could stop was just leaving, then they are not useful for us. 
+In the second thing we do is a tricky word ending, try and reduce the vocabulary. So happening happened happens. It just drinking them all to happen. They're all the same Concept. 
+So that's called standing on the train Signature words. So now we've got seven words or tokens. 
+And no, we got them into a dictionary, which is going to be a big list of all the tokens from our text from all the reviews on their training details. 
+So that's going to be a big list of ten words. You know, it might be 100,000. 
+And that's a dictionary. 
+And then given a review takes for a specific view, 
+what we gonna do is map it, 
+to a vector and re of size na. 
+Just so were taking take them up into a huge victory that maybe you know, 50 or hundred thousand elements in it. 
+And what we do is we put and the ice entry in the dictionary.
+Corresponds to the I th entry in misery. 
+So if word I appears in the review. 
+With stake that we we make that entry nearly one. And if it appears twice, we could make the entry to. 
+
+So we just can't number of times. Each word addiction appears, of course, most of the entries are not a real zero. 
+And it's only a few of them are non zero corresponds to the words, actually interview, so it's a bigger but sparse, so we can actually store efficiently works quite efficiently. 
+An example with this review here in orange is you know that
+grant happens once you can see her grandchildren. So that's what happens once is that the rule ten thousand hundred seven when I was doing it, 
+industry and we give a one and an example be mens a terrible mess with a few twice, actually. 
+
+So Mason terrible price, we put two in the course, many elements and so on. 
+So if a simple with thrown away old grammar and all the structure of it takes over as counting words here, 
+and then we have to figure out a letter to wait to these words, positive and negative, essentially. 
+And how much positive and how much negative
+so we'll see some notation will have always been to be calling through the module parameters. These can we circle parameters theta. Theta is a standard. 
+Great letter to use to refer to them, and we'll call theta sub I. 
+The word associated with the the way to succeed with the ice water in a dictionary. 
+So we get any of these。We've also got50×1,000of these ways to choose。
+And so
+given the text, 
+this is going to be able to do a prediction. 
+Given the text for movie review, what we do is we wait
+all the words. 
+And add them up. So if the word a mass appears twice was x one. 
+Then we can add a way that sounds. And we suppose that's a bad word. We make it to one is being a-
+10. 
+And then the x two here could be a good
+and we could make to their being+5 and so were converting from our text. 
+Two different ways giving to to these different ways, basically adding up the weight of the post awards in the negative words. 
+And then we're going to see on balance as opposed to the-. 
+And we'll do the decisions. You can write this sum here in a shorter way. We can use this big signification where I equals one to n. That just means it's like a for loop is running. 
+From one to n, and we're adding up the items x i's. 
+And an even shorter way. She said nearly always, right? It is great. That is theta transpose x, and come on. 
+It's that notation in a minute because we use that a lot. 
+And then if this prediction is going to be, if this weighted sum is bigger than 06 positive is less than zero. 
+Was his negative of the function called sign, which does that. So it's+1 when they
+distrust is because zero and-4 a. -
+1 minute lessons, you know. [
+噪声]
+And so just to stay on notation here, we should get over there on. We don't use any linear algebra in the module, but we do use some basic knowledge of rotation, because it's standard because it's convenient. 
+Impact. So we'll be using vectors a lot, which essentially raised in one dimensional arrays, allows write them like this. 
+So it's just a list of numbers. 
+It's a vector is x, then it's at the first element will be x sub one. Second element will be x sub two, and so on. 
+It's on the 61 is 2, 30 a matrix is like a two dimensional array. 
+And
+so in fact, the elements one one refers to the role in the columns or one column one. 
+Two m one would be wrong to comment on that with the three elements to one would be
+sorry, an element 12 would be first of all, second column into two before. 
+And we want to use matters too much. 
+The we use vectors a lot. 
+And transport. 
+It's just instead of waiting in the vector of vertically right horizontally. And that's me, that's a we use mostly together seen a minute also because it saves space on the beach. 
+As an inner product that we will use a lot. 
+It's very scene there is x transpose y is the sum. 
+What we do is we take each of the elements in the vector two vectors. 
+Multiply each of them together and then add them up. 
+So were gonna use that notation, but really just using it as notation. I'm not confusing anything beyond that, if you are feeling very rested on that stuff, 
+if there's lots of good revision material around online and going to look at it, because we really are going to be using this. And so there are some nice kind of CAD, a me staff and says, and this crusader modules there, you can have a good look at it. [
+噪声]
+Okay, so we've got a model where a once we know the way to give, we can map a text, 
+to to a numeric vector, and which is going to be the spark of word vector. And then if we know the way is to attach the different words, we can just
+add up the weights for the words that are in the in the review. And then we could decision whether it's positive or negative, but we don't know the vice of these ways. 
+So how are we going to land and bring the training data to do that? Because we have examples we can use to try to learn a week for the words, there's lots of ways, and we can do go by doing this. 
+And we will come onto that more. 
+But essentially, what we have to do is create a cost function, 
+the measures the errors
+the mistakes we make in our predictions, 
+and then we're not we're in optimization algorithm that minimizes the error. So we we can measure her will, or model is predicting for the training data. 
+And then we tweak the parameters using on an online algorithm and to try and reduce that error. 
+So that's the minimizing the
+but without a position to minimize the cost function, 
+and that's a standard setup was used again and again, we change the cost function. It can change the organization of the general idea. 
+The training model
+is a minimizing cost function is is a is an enduring idea that you'll see throughout. 
+The module. 
+Ab cross will do my new of course, and select some words, but that's not not commonly done. [
+噪声]
+So look at her ass. 
+That analysis example, train on some data, the data we had from Cornell, 
+and use a thing called logistic regression,  which is the registration cost function were gonna come back to that. 
+Next week then and we
+doesn't the details don't matter, then what we find is the words with the trained with the theme was negative weights just have a look at our worst support the boarding. 
+And the most positive ones are family truly excellent. The the worst and boardings in find, suppose this is a strange one for the next weeks on the+, 1 seemed excellent seems good family treatment seems like so the the bit strange to some how the alert they may be something that fishy better. 
+But for the weeks that we've learned and worth poking around a little bit more, and you see the spending being cautious about these models and spending some time, 
+a booking rental them is something will be it's well worth spending time on something will be developing tools for
+so
+when we use weights on the training data, we get hundreds and actually create everything, right? 
+But is that good taste were using the data we that we used to tune the parameters? 
+Also evaluate them. 
+Whereas what we really like is when we presented the new review will make a good prediction. 
+So what we
+so getting 100% actually in that
+isn't really a so great. But what we can do is hold out some data. 
+Try it with new predictions, and it turns out these kind of look at each% accuracy. 
+So you can take yourself, so you can download that. It said,  and here's some Python code to go to it, and it will give you some reports on predictions. This will actually will split into training and test data. 
+And you can go try it, please do try. 
+Thank you. 
+A so the yes, just to wrap up the ideas that were going to see again and again. 
+And we have to do some feature engineering at a map from the input to an array of numbers. And that's that's a that's a oftentimes the gym and tricky. 
+We will spend a good while talking about that. 
+We used prediction was sine of this. We did some words as an example of one way of predicting. 
+Of mapping from the input to the people of lots of other ways of doing it, and look at some of that. 
+We used logistic cost function for the training. There's lots of functions, and we used optimization to minimize that cost function will be doing a lot. 
+If I was informed as we skipped over that, but that's something that's super important and has been a good while. 
+Practicing and learning tools to do. 
+If it forms a practical day to train and get familiar with as part of the making judgments, you know that get some experience with that. 
+噪声]
